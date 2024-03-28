@@ -1,0 +1,61 @@
+{%  extends 'temp/main_cust.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ORDER DETAILS</title>
+</head>
+<body>
+<center>
+	<h1 style="color: #eccdaa">ORDER DETAILS</h1>
+	<table>
+		<tr style="color: #FF984D;text-align: center">
+            <th style="border: #33211D 3px solid;background-color: #331715;">Baker name</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Cake name</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Image</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Flavour</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Shape</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Cake count</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Weight</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Tier</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Delivery date</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Delivery time</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Wishes</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Amount</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Total Price</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Status</th>
+            <th style="border: #33211D 3px solid;"></th>
+            <th style="border: #33211D 3px solid;"></th>
+		</tr>
+        {% for i in x %}
+		<tr>
+            <td style="background-color: #542622;border: #33211D 3px solid">{{ i.baker.name }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.product.cake_name }}</td>
+{#			<td>{{ i.product.image1 }}</td>#}
+            <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/static/{{ i.product.image1 }}"> <img src="/static/{{ i.product.image1  }}" height="50px" width="50px"></a></td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.product.flavour }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.shape }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.cake_count }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.weight }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.tier }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.delivery_date }}</td>
+			<td  style="background-color: #542622;border: #33211D 3px solid">{{ i.delivery_time }}</td>
+			<td  style="background-color: #421E1B;border: #33211D 3px solid">{{ i.wishes }}</td>
+			<td  style="background-color: #542622;border: #33211D 3px solid">{{ i.product.price }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.total_price }}</td>
+			<td  style="background-color: #542622;border: #33211D 3px solid">{{ i.status }}</td>
+
+            {% if i.status == "Accepted" %}
+                <td style="background-color: #542622;border: #33211D 3px solid"><a href="/payment/pay/{{ i.order_id}}" class="btn-primary" style="border: #0a0706;border-radius: 3px">PAY</a></td>
+			    <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/order/cancel/{{ i.order_id }}" class="btn-primary" style="border: #0a0706;border-radius: 3px">CANCEL</a></td>
+
+            {% else %}
+                <td></td>
+            {% endif %}
+		</tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>
+{%  endblock %}

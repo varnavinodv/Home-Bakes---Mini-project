@@ -1,0 +1,63 @@
+{% extends 'temp/main_baker.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CAKE DETAILS</title>
+</head>
+<body>
+<center>
+	<h1 style="color:#eccdaa">CAKE DETAILS</h1>
+	<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+		<table>
+			<tr>
+    			<td style="padding: 3px; font-weight: bold;">Cake Name:</td>
+    			<td><input type="text" name="cnm" value="{{ v.cake_name }}"  style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Image 1:</td>
+    			<td><input type="file" name="imgf" value="{{ v.image1 }}" ></td>
+                <td><img src="/static/{{ v.image1 }}" style=" height:50px;width: 50px"></td>
+    		</tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Image 2:</td>
+                <td><input type="file" name="imgs" value="={{ v.image2 }}"></td>
+                <td><img src="/static/{{ v.image2 }}" style=" height:50px;width: 50px"></td>
+            </tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Image 3:</td>
+                <td><input type="file" name="imgt" value="{{ v.image3 }}"></td>
+                <td><img src="/static/{{ v.image2 }}" style=" height:50px;width: 50px"></td>
+            </tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Flavour:</td>
+    			<td><input type="text" name="flv" value="{{ v.flavour }}"  style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Category:</td>
+                <td ><select name="typ"  style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white">
+                    <option value="{{ v.type }}">{{ v.type }}</option>
+
+                       <option>----SELECT----</option>
+{#                    <option value="{{ v.type }}">{{ v.type }}</option>#}
+                    <option value="Simple">Simple</option>
+                    <option value="Theme">Theme</option>
+                </select></td>
+            </tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Price per kg:</td>
+    			<td><input type="text" name="prc" value="{{ v.price }}"  style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td></td>
+    			<td><input type="submit" name="upt" value="UPDATE" class="btn btn-primary" style="border-color: #1b110f;color: #1b110f"></td>
+    		</tr>
+		</table>
+	</form>
+
+</center>
+</body>
+</html>
+{% endblock %}

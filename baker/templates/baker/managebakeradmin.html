@@ -1,0 +1,54 @@
+{%  extends 'temp/main_admin.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MANAGE BAKER</title>
+</head>
+<body>
+	<center>
+		<h1 style="color: #eccdaa">MANAGE BAKER</h1>
+
+		<table>
+			<tr style="background-color: #331715;color: #FF984D;text-align: center">
+				<th style="border: #33211D 3px solid">Name</th>
+				<th style="border: #33211D 3px solid">Age</th>
+				<th style="border: #33211D 3px solid">Email</th>
+				<th style="border: #33211D 3px solid">Phone number</th>
+				<th style="border: #33211D 3px solid">House name</th>
+				<th style="border: #33211D 3px solid">Post Office</th>
+				<th style="border: #33211D 3px solid">Pin</th>
+				<th style="border: #33211D 3px solid">District</th>
+				<th style="border: #33211D 3px solid">Liscense</th>
+                <th style="border: #33211D 3px solid">Status</th>
+
+			</tr>
+            {% for i in x %}
+			<tr style="vertical-align: center;height: 50px;color: blanchedalmond;border-bottom: #33211D 2px solid">
+				<td style="background-color: #542622;border: #33211D 3px solid">{{ i.name }}</td>
+				<td style="background-color: #421E1B ;border: #33211D 3px solid">{{ i.age }}</td>
+				<td style="background-color: #542622;border: #33211D 3px solid">{{ i.email }}</td>
+				<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.phone_no }}</td>
+				<td style="background-color: #542622;border: #33211D 3px solid">{{ i.house_name }}</td>
+				<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.post_office }}</td>
+				<td style="background-color: #542622;border: #33211D 3px solid">{{ i.pin_code }}</td>
+				<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.district }}</td>
+{#				<td>{{ i.liscense }}</td>#}
+                <td style="background-color: #542622;border: #33211D 3px solid"><a href="/static/{{ i.liscense }}"> <img src="/static/{{ i.liscense  }}" height="50px" width="50px"></a></td>
+                <td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.status }}</td>
+                {% if i.status == "Accepted" %}
+                    <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/baker/reject/{{ i.baker_id }}" class="btn btn-outline-primary" style="border: #0a0706;border-radius: 7px">REJECT</a></td>
+                    {% elif i.status == "Rejected" %}
+                        <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/baker/accept/{{ i.baker_id }}" class="btn btn-outline-primary" style="border: #0a0706;border-radius: 7px">ACCEPT</a></td>
+                {% else %}
+                    <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/baker/accept/{{ i.baker_id }}" class="btn btn-outline-primary" style="border: #0a0706;border-radius: 7px" >ACCEPT</a></td>
+                    <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/baker/reject/{{ i.baker_id }}" class="btn btn-outline-primary" style="border: #0a0706;border-radius: 7px">REJECT</a></td>
+                {% endif %}
+			</tr>
+    		{% endfor %}
+    		
+		</table>
+	</center>
+</body>
+</html>
+{% endblock %}

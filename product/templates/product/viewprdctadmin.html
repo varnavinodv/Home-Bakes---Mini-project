@@ -1,0 +1,53 @@
+{%  extends 'temp/main_admin.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PRODUCT DETAILS</title>
+</head>
+<body>
+<center>
+	<h1 style="color: #eccdaa">PRODUCT DETAILS</h1>
+    <form method="post">
+            {% csrf_token %}
+		<tr>
+			<td><input type="text" name="search" value="{{ se }}"></td>
+			<td><input type="submit" name="action" value="search">
+		</tr>
+            <tr>
+			<td><input type="submit" name="action" value="Simple cakes"></td>
+			<td><input type="submit" name="action" value="Theme cakes"></td>
+		</tr>
+	</form>
+	<table border="2" class="table-hover">
+		<tr style="background-color: #331715;color: #FF984D;text-align: center">
+            <th style="border: #33211D 3px solid">Baker name</th>
+			<th style="border: #33211D 3px solid">Cake name</th>
+			<th style="border: #33211D 3px solid">Image</th>
+			<th style="border: #33211D 3px solid">Image</th>
+			<th style="border: #33211D 3px solid">Image</th>
+			<th style="border: #33211D 3px solid">Flavour</th>
+			<th style="border: #33211D 3px solid">Price</th>
+			<th style="border: #33211D 3px solid">Category</th>
+		</tr>
+        {% for i in x %}
+		<tr>
+            <td style="background-color: #542622;border: #33211D 3px solid">{{ i.baker.name }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.cake_name }}</td>
+{#			<td>{{ i.image1 }}</td>#}
+            <td style="background-color: #542622;border: #33211D 3px solid"><a href="/static/{{ i.image1 }}"> <img src="/static/{{ i.image1  }}" height="50px" width="50px"></a></td>
+{#			<td>{{ i.image2 }}</td>#}
+            <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/static/{{ i.image2 }}"> <img src="/static/{{ i.image2  }}" height="50px" width="50px"></a></td>
+{#			<td>{{ i.image3 }}</td>#}
+            <td style="background-color: #542622;border: #33211D 3px solid"><a href="/static/{{ i.image3 }}"> <img src="/static/{{ i.image3  }}" height="50px" width="50px"></a></td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.flavour }}</td>
+			<td  style="background-color: #542622;border: #33211D 3px solid">{{ i.price }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.type }}</td>
+		</tr>
+        {% endfor %}
+    </table>
+	
+</center>
+</body>
+</html>
+{% endblock %}

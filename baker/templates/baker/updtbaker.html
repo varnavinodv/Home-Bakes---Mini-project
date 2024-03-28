@@ -1,0 +1,75 @@
+{% extends 'temp/main_baker.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UPDATE PROFILE</title>
+</head>
+<body>
+<center>
+    <h1 style="color: #eccdaa;">UPDATE PROFILE</h1>
+    <form method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+    	<table>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">Name:</td>
+    			<td><input type="text" name="bnm" value="{{ v.name }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">Age:</td>
+    			<td><input type="text" name="bage" value="{{ v.age }} " pattern="[0-9]{2}"  minlength="2" maxlength="2" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">Email:</td>
+    			<td><input type="email" name="beml" value="{{ v.email }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">Phone no.:</td>
+    			<td><input type="text" name="bphno" value="{{ v.phone_no }}" required pattern="[0-9]{10}" minlength="10" maxlength="10" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">House Name:</td>
+    			<td><input type="text" name="bhnm" value="{{ v.house_name }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">Post Office:</td>
+    			<td><input type="text" name="bpo" value="{{ v.post_office }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white" ></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">Pin:</td>
+    			<td><input type="text" name="bpin" value="{{ v.pin_code }}" required pattern="[0-9]{6}" minlength="6" maxlength="6" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">District:</td>
+    			<td><input type="text" name="district" value="Calicut" readonly="" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold">Liscense:</td>
+                <td><a href="/static/{{ v.liscense }}" > <img src="/static/{{ v.liscense  }}"  height="50px" width="50px"></a></td>
+{#                <td><input type="file" value="={{ v.liscense }}" ></td>#}
+                
+{#                <td><img src="/static/{{ v.liscense }}"style=" height:50px;width: 50px" ></td>#}
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="file" name="liscense" value="{{ v.liscense }}"  ></td>
+    		</tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="text" name="pwd" value="{{ v.password }}" required maxlength="10" minlength="8" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" name="btn" value="UPDATE" class="btn btn-primary" style="border-color: #1b110f;color: #1b110f"></td>
+			</tr>
+    	</table>
+    </form>
+    {% if msg == "success" %}
+        <script>
+        alert("Registered Successfully")
+        </script>
+    {% endif %}
+</center>
+</body>
+</html>
+{% endblock %}

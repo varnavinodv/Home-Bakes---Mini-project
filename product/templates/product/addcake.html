@@ -1,0 +1,61 @@
+{%  extends 'temp/main_baker.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CAKE DETAILS</title>
+</head>
+<body>
+<center>
+	<h1 style="color: #eccdaa">CAKE DETAILS</h1>
+	<form method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+		<table>
+			<tr>
+    			<td style="padding: 3px; font-weight: bold;">Cake Name:</td>
+    			<td><input type="text" name="cnm" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Image 1:</td>
+    			<td><input type="file" name="imgf" required ></td>
+    		</tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Image 2:</td>
+                <td><input type="file" name="imgs"></td>
+            </tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Image 3:</td>
+                <td><input type="file" name="imgt" ></td>
+            </tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Flavour:</td>
+    			<td><input type="text" name="flv" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Category:</td>
+                <td><select name="typ" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white">
+                    <option>----SELECT----</option>
+                    <option value="Simple">Simple</option>
+                    <option value="Theme">Theme Cake</option>
+                </select></td>
+            </tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Price per kg:</td>
+    			<td><input type="text" name="prc" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td></td>
+    			<td><input type="submit" name="SUBMIT" class="btn btn-primary" style="border-color: #1b110f;color: #1b110f"></td>
+    		</tr>
+		</table>
+	</form>
+    {% if msg == "success" %}
+        <script>
+        alert("Cake added successfully")
+        </script>
+    {% endif %}
+
+</center>
+</body>
+</html>
+{%  endblock %}

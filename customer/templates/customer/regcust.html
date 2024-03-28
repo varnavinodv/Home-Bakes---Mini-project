@@ -1,0 +1,63 @@
+{%  extends 'temp/main_home.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CUSTOMER REGISTRATION</title>
+</head>
+<body>
+<center>
+    <h1 style="color: #eccdaa">CUSTOMER REGISTRATION</h1>
+    <form method="post">
+        {% csrf_token %}
+    	<table>
+    		<tr>
+               <td style="padding: 3px; font-weight: bold;">Name:</td>
+               <td><input type="text" name="cnm" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+    			<td style="padding: 3px; font-weight: bold;">Age:</td>
+    			<td><input type="text" name="cage" required pattern="[0-9]{2}" minlength="2" maxlength="2" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Email:</td>
+    			<td><input type="email" name="ceml" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Phone no.:</td>
+    			<td><input type="text" name="cphno" required pattern="[0-9]{10}" minlength="10" maxlength="10" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">House Name:</td>
+    			<td><input type="text" name="chnm" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Post Office:</td>
+    			<td><input type="text" name="cpo" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">Pin:</td>
+    			<td><input type="text" name="cpin" required pattern="[0-9]{6}" minlength="6" maxlength="6" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 3px; font-weight: bold;">District:</td>
+    			<td><input type="text" name="district" value="Calicut" readonly="" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+    		</tr>
+    		<tr>
+				<td style="padding: 3px; font-weight: bold;">Password:</td>
+				<td style="padding: 3px; font-weight: bold;"><input type="Password" name="cpsw" required minlength="8" maxlength="10" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+			</tr>
+			<tr>
+				<td style="padding: 3px; font-weight: bold;"></td>
+				<td><input type="submit" name="btn" value="SUBMIT" class="btn btn-primary" style="border-color: #1b110f;color: #1b110f""></td>
+			</tr>
+    	</table>
+    </form>
+    {% if msg == "success" %}
+        <script>
+        alert("Registered Successfully")
+        </script>
+    {% endif %}
+</center>
+</body>
+</html>
+{% endblock %}

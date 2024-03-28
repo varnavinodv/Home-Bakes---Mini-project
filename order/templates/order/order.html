@@ -1,0 +1,134 @@
+{%  extends 'temp/main_cust.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>ORDER DETAILS</title>
+</head>
+<body>
+<center>
+   <h1 style="color: #eccdaa">ORDER DETAILS</h1>
+   <form method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+      <table>
+         <tr>
+             <td style="padding: 3px; font-weight: bold;">Cake Name:</td>
+             <td><input type="text" name="cknm" value="{{ a.cake_name }}" readonly style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+          </tr>
+          <tr>
+                <td style="padding: 3px; font-weight: bold;">Image:</td>
+{#                <td><img src="gh" height="45px" width="45px" value="{{ a.image1 }}" ></td>#}
+                <td><img src="/static/{{ a.image1 }}"style=" height:50px;width: 50px" ></td>
+            </tr>
+          <tr>
+             <td style="padding: 3px; font-weight: bold;">Flavour:</td>
+             <td><input type="text" name="flvr" value="{{ a.flavour }}" readonly style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+          </tr>
+          <tr>
+             <td style="padding: 3px; font-weight: bold;">shape:</td>
+             <td><select name="shp" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white">
+               <option>----SELECT----</option>
+               <option value="Square">Square</option>
+               <option value="Circle">Circle</option>
+               <option value="Rectangle">Rectangle</option>
+               <option value="Triangle">Triangle</option>
+               <option value="Heart">Heart</option>
+            </select></td>
+          </tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Cake count:</td>
+                <td><input type="number" name="cnt" required id="cnt" minlength="1"  onchange="calculateTotalPrice();"  maxlength="2"style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+{#            <tr>#}
+{#                <td style="padding: 3px; font-weight: bold;">Weight(Max 5kg):</td>#}
+{#                <td><input type="text" name="wgt" id="wgt" required  style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>#}
+{#            </tr>#}
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Weight(Max 5kg):</td>
+                <td><input type="text" name="wgt" id="wgt" required  style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Tier:</td>
+                <td><select name="tr" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white">
+                    <option>----SELECT----</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select></td>
+            </tr>
+          <tr>
+             <td>Delivery Date:</td>
+             <td><input type="date" name="dte" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white" min="{{ dt }}"></td>
+          </tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Delivery Time:</td>
+                <td><input type="time" name="tme" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+
+         <tr>
+             <td style="padding: 3px; font-weight: bold;">Wishes:</td>
+             <td><input type="text" name="wss"  style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+          </tr>
+            <tr>
+             <td style="padding: 3px; font-weight: bold;">Amount:</td>
+             <td><input type="number" name="amt" onchange="calculateTotalPrice();"  id='amt' value="{{ a.price }}" readonly style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+          </tr>
+{#            <tr>#}
+{#               <td>delivery charge </td>#}
+{#             <td><input type="number" name="chrge" onchange="calculateTotalPrice();"  id='deli' value="{{ a }}" readonly style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#               <td>Total price:</td>#}
+{#               <td><input type="text" name="tprc" id="totalPrice" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>#}
+{#            </tr>#}
+
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Delivery</td><td>Details</td>
+            </tr>
+            <tr>
+                <td>House name:</td>
+                <td style="padding: 3px; font-weight: bold;"><input type="text" name="hnm" value="{{ b.house_name }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+            <tr>
+                <td>Post Office:</td>
+                <td style="padding: 3px; font-weight: bold;"><input type="text" name="pstof" value="{{ b.post_office }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+            <tr>
+                <td>Pin:</td>
+                <td style="padding: 3px; font-weight: bold;"><input type="text" name="pn" value="{{ b.pin_code }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+            <tr>
+                <td>District:</td>
+                <td style="padding: 3px; font-weight: bold;"><input type="text" name="dis" value="{{ b.district }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;">Phone no.</td>
+                <td><input type="text" name="phn" value="{{ b.phone_no }}" required style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white"></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td><input type="submit" name="btn" value="ORDER" class="btn btn-primary" style="border-color: #1b110f;color: #1b110f"></td>
+            </tr>
+        </table>
+    <script>
+    function calculateTotalPrice() {
+
+        // Get quantity and price values
+        var count = parseFloat(document.getElementById('cnt').value);
+        var weight = parseFloat(document.getElementById('wgt').value);
+        var price = parseFloat(document.getElementById('amt').value);
+        {#var deliver = parseFloat(document.getElementById('deli').value);#}
+
+        // Calculate total price
+        var totalPrice = count * weight * price + 70;
+        //document.getElementById('totalPrice').value = 'hello'
+        // Display the total price
+        document.getElementById('totalPrice').value = totalPrice.toFixed();
+    }
+</script>
+   </form>
+</center>
+
+</body>
+</html>
+{%  endblock %}

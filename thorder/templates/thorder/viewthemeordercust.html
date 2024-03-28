@@ -1,0 +1,63 @@
+{%  extends 'temp/main_cust.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>THEME ORDER DETAILS</title>
+</head>
+<body>
+<center>
+	<h1 style="color: #ecc">THEME ORDER DETAILS</h1>
+	<table>
+
+		<tr style="background-color: #331715;color: #FF984D;text-align: center">
+            <th style="border: #33211D 3px solid">Baker name</th>
+			<th style="border: #33211D 3px solid">Cake name</th>
+			<th style="border: #33211D 3px solid">Image</th>
+			<th style="border: #33211D 3px solid">Flavour</th>
+			<th style="border: #33211D 3px solid">Shape</th>
+			<th style="border: #33211D 3px solid">Cake count</th>
+			<th style="border: #33211D 3px solid">Weight</th>
+			<th style="border: #33211D 3px solid">Tier</th>
+            <th style="border: #33211D 3px solid">Wishes</th>
+			<th style="border: #33211D 3px solid">Description</th>
+			<th style="border: #33211D 3px solid">Photo</th>
+			<th style="border: #33211D 3px solid">Delivery date</th>
+			<th style="border: #33211D 3px solid">Delivery time</th>
+			<th style="border: #33211D 3px solid">Amount</th>
+			<th style="border: #33211D 3px solid">Total Price</th>
+			<th style="border: #33211D 3px solid">Status</th>
+		</tr>
+        {% for i in x %}
+		<tr>
+            <td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.baker.name }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.product.cake_name}}</td>
+{#			<td>{{ i.product.image1 }}</td>#}
+            <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/static/{{ i.product.image1 }}"> <img src="/static/{{ i.product.image1  }}" height="50px" width="50px"></a></td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.product.flavour }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.shape }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.cake_count }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.weight }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.tier }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.wishes}}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.desciption }}</td>
+{#			<td>{{ i.photo }}</td>#}
+            <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/static/{{ i.photo }}"> <img src="/static/{{ i.photo }}" height="50px" width="50px"></a></td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.delivery_date }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.delivery_time }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.product.price }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.total_price }}</td>
+            <td style="background-color: #542622;border: #33211D 3px solid">{{ i.status }}</td>
+            {% if i.status == "Accepted" %}
+			    <td><a href="{% url 'can' idd=i.theme_id %}" class="btn btn-primary" style="border: #0a0706;border-radius: 7px">CANCEL</a></td>
+			    <td><a href="{% url 'thpy' idd=i.theme_id %}" class="btn btn-primary" style="border: #0a0706;border-radius: 7px">PAY</a></td>
+            {% else %}
+                 <td></td>
+            {% endif %}
+		</tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>
+{% endblock %}

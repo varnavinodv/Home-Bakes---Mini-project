@@ -1,0 +1,34 @@
+{% extends 'temp/main_baker.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PAYMENT DETAILS</title>
+</head>
+<body>
+<center>
+	<h1 style="color: #eccdaa">PAYMENT DETAILS</h1>
+	<table border="2">
+		<tr style="background-color: #331715;color: #FF984D;text-align: center">
+			<th style="border: #33211D 3px solid">Customer name</th>
+			<th style="border: #33211D 3px solid">Date</th>
+			<th style="border: #33211D 3px solid">Cake name</th>
+			<th style="border: #33211D 3px solid">Cake count</th>
+			<th style="border: #33211D 3px solid">Amount</th>
+            <th style="border: #33211D 3px solid">Status</th>
+		</tr>
+        {% for i in x %}
+		<tr>
+			<td  style="background-color: #542622;border: #33211D 3px solid">{{ i.customer.name }}</td>
+			<td  style="background-color: #421E1B;border: #33211D 3px solid">{{ i.date }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.theme.product.cake_name }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.theme.cake_count}}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.theme.total_price }}</td>
+            <td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.status}}</td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+</body>
+</html>
+{% endblock  %}

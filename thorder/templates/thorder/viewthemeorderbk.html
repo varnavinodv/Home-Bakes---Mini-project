@@ -1,0 +1,84 @@
+{% extends 'temp/main_baker.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>THEME ORDER DETAILS</title>
+</head>
+<body>
+<center>
+	<h1 style="color: #eccdaa"> THEME ORDER DETAILS</h1>
+	<table border="2" style="border: #421E1B 3px solid">
+
+		<tr style="background-color: #331715;color: #FF984D;text-align: center">
+			<th style="border: #33211D 3px solid;background-color: #331715;">Cake name</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Image</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Flavour</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Shape</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Cake count</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Weight</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Tier</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Wishes</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Description</th>
+			<th style="border: #33211D 3px solid;background-color: #331715">Photo</th>
+			<th style="border: #33211D 3px solid;background-color: #331715">Delivery date</th>
+			<th style="border: #33211D 3px solid;background-color: #331715">Delivery time</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Amount</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Total Price</th>
+            <th style="border: #33211D 3px solid;background-color: #331715;">Customer name</th>
+            <th style="border: #33211D 3px solid;background-color: #331715;">House name</th>
+            <th style="border: #33211D 3px solid;background-color: #331715;">Post Office </th>
+            <th style="border: #33211D 3px solid;background-color: #331715;">Pin</th>
+            <th style="border: #33211D 3px solid;background-color: #331715;">District</th>
+            <th style="border: #33211D 3px solid;background-color: #331715;">Phone no</th>
+            <th style="border: #33211D 3px solid">Status</th>
+            <th ></th>
+            <th ></th>
+		</tr>
+        {% for i in x %}
+		<tr>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.product.cake_name }}</td>
+{#			<td>{{ i.product.image1 }}</td>#}
+{#            <td><img src="/static/{{ i.product.image1 }}"style=" height:50px;width: 50px" ></td>#}
+            <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/static/{{ i.product.image1 }}"> <img src="/static/{{ i.product.image1  }}" height="50px" width="50px"></a></td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.product.flavour }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.shape }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.cake_count }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.weight }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.tier }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.wishes }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.desciption }}</td>
+{#			<td>{{ i.photo }}</td>#}
+            <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/static/{{ i.photo }}"> <img src="/static/{{ i.photo  }}" height="50px" width="50px"></a></td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.delivery_date}}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.delivery_time }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.product.price }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.total_price }}</td>
+            <td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.customer.name }}</td>
+            <td style="background-color: #542622;border: #33211D 3px solid">{{ i.customer.house_name }}</td>
+            <td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.customer.post_office }}</td>
+            <td style="background-color: #542622;border: #33211D 3px solid">{{ i.customer.pin_code }}</td>
+            <td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.customer.district }}</td>
+            <td style="background-color: #542622;border: #33211D 3px solid">{{ i.customer.phone_no }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.status }}</td>
+            {% if i.status == "pending" %}
+			    <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="{% url 'ta' idd=i.theme_id %}" class="btn btn-primary" style="border: #0a0706;border-radius: 7px">ACCEPT</a></td>
+                <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="{% url 'rt' idd=i.theme_id %}" class="btn btn-primary" style="border: #0a0706;border-radius: 7px">REJECT</a></td>
+                {% elif i.status == "Accepted" %}
+                     <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="{% url 'rt' idd=i.theme_id %}" class="btn btn-primary" style="border: #0a0706;border-radius: 7px">REJECT</a></td>
+                {% elif i.status == "Rejected" %}
+                     <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="{% url 'ta' idd=i.theme_id %}" class="btn btn-primary" style="border: #0a0706;border-radius: 7px">ACCEPT</a></td>
+                 {% elif i.status == "Cancelled" %}
+                     <td style="background-color: #421E1B;border: #33211D 3px solid"></td>
+                  {% elif i.status == "Delivered" %}
+                     <td style="background-color: #421E1B;border: #33211D 3px solid"></td>
+            {% else %}
+                  <td style="background-color: #421E1B;border: #33211D 3px solid"><a href="{% url 'dlv' idd=i.theme_id %}" class="btn btn-primary" style="border: #0a0706;border-radius: 7px">DELIVERED</a></td>
+            {% endif %}
+            {% endfor %}
+		</tr>
+    </table>
+</center>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,44 @@
+{%  extends 'temp/main_baker.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UPDATE PROFILE</title>
+</head>
+<body>
+<center>
+	<h1 style="color: #eccdaa">UPDATE PROFILE</h1>
+	<table border="2" class="table-striped">
+		<tr style="color: #FF984D;text-align: center">
+			<th style="border: #33211D 3px solid;background-color: #331715">Name</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Age</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Email</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Phone no.</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">House name</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Post office</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Pin</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">District</th>
+			<th style="border: #33211D 3px solid;background-color: #331715;">Liscense</th>
+            <th style="border: #33211D 3px solid;"></th>
+            <th style="border: #33211D 3px solid;"></th>
+		</tr>
+        {% for i in x %}
+		<tr >
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.name}}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.age}}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.email }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.phone_no }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.house_name }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.post_office }}</td>
+			<td style="background-color: #542622;border: #33211D 3px solid">{{ i.pin_code }}</td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid">{{ i.district }}</td>
+            <td style="background-color: #542622;border: #33211D 3px solid"><a href="/static/{{ i.liscense }}"> <img src="/static/{{ i.liscense  }}" height="50px" width="50px"></a></td>
+			<td style="background-color: #421E1B;border: #33211D 3px solid"><a href="/baker/updtbk/{{ i.baker_id }} " class="btn btn-outline-primary" style="border: #0a0706;border-radius: 7px">UPDATE</a></td>
+			<td style="background-color: #542622;border: #33211D 3px solid"><a href="/baker/delete/{{ i.baker_id }}" class="btn btn-outline-primary" style="border: #0a0706;border-radius: 7px">DELETE</a></td>
+		</tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>
+{%  endblock %}

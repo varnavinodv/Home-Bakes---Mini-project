@@ -1,0 +1,136 @@
+{%  extends 'temp/main_cust.html' %}
+{%  block base %}
+<!DOCTYPE html>
+<html>
+<head>
+   <title>REVIEWS</title>
+</head>
+<body>
+<style>
+    .star-rating {
+  border:solid 1px #ccc;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
+}
+            input,select {
+
+          font-size: 16px;
+           border: none;
+                width: 100%;
+                border-radius: 8px;
+                border-bottom: 1px solid #0d8ebd;
+                padding: 15px 24px;
+}
+
+        fieldset
+{
+    border-left:1px solid deepskyblue;
+            {#border-bottom:1px solid deepskyblue;#}
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:8px;
+}
+
+input[type=submit],button{
+    font-size: 15px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    color: #4ACCD1;
+    width: 5%;
+    alignment: center;
+  border-bottom: 1px;}
+
+
+input[type=reset]{font-size: 20px;
+    padding: 10px 24px;
+    border-radius: 8px;
+    color: #4ACCD1;
+    width: 100%;
+  border-bottom: 1px solid #0d8ebd;}
+
+legend{
+    color: #0d8ebd;
+    font-weight: bold;
+    float: left;
+}
+
+select{width: 100%;
+
+}
+        </style>
+<center>
+   <h1 style="color: #eccdaa">REVIEWS</h1>
+   <form method="post">
+        {% csrf_token %}
+      <table>
+         <tr>
+            <td style="padding: 3px; font-weight: bold;">Name of Baker:</td>
+            <td><select name="nmb" required class="form-control text-center" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white;height: 50px;">
+               <option>-------SELECT-------</option>
+               {% for i in a %}
+                    <option value="{{ i.baker_id }}">{{ i.name }}</option>
+                    {% endfor %} }}
+            </select></td>
+
+         </tr>
+         <tr>
+             <td style="padding: 3px; font-weight: bold;">Review:</td>
+             <td><input type="text" name="rvw" required class="form-control" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white;height: 50px;"></td>
+          </tr>
+        <tr>
+{#            <td colspan="2">&ensp;</td></tr>#}
+            <td style="padding: 3px; font-weight: bold;">Rating</td>
+<td>
+    <div class="star-rating" style="border: 1px solid #1b110f; border-radius: 3px; padding: 5px; box-sizing: border-box; background-color: #3d352e; color: white;width: 210px;height: 50px;">
+  <input type="radio" id="5-stars" name="rating" value="5" />
+  <label for="5-stars" class="star">&#9733;</label>
+  <input type="radio" id="4-stars" name="rating" value="4" />
+  <label for="4-stars" class="star">&#9733;</label>
+  <input type="radio" id="3-stars" name="rating" value="3" />
+  <label for="3-stars" class="star">&#9733;</label>
+  <input type="radio" id="2-stars" name="rating" value="2" />
+  <label for="2-stars" class="star">&#9733;</label>
+  <input type="radio" id="1-star" name="rating" value="1" />
+  <label for="1-star" class="star">&#9733;</label>
+    </div></td></tr>
+{#        <tr>#}
+{#          <td>&nbsp;</td>#}
+{#        </tr>#}
+          <tr>
+            <td></td>
+            <td><input type="submit" name="btn" value="SUBMIT" class="btn btn-primary" style="border-color: #1b110f;color: #1b110f;width: 150px"></td>
+         </tr>
+       </table>
+   </form>
+      {% if msg == "success" %}
+        <script>
+        alert("Review submitted")
+        </script>
+      {% endif %}
+</center>
+</body>
+</html>
+{%  endblock %}
